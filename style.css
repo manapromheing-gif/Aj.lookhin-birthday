@@ -1,51 +1,53 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
 body {
-  background: linear-gradient(135deg, #1c1c2b, #2a2a40);
-  font-family: "Segoe UI", sans-serif;
-  color: #f2f2f2;
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
+  color: #000;
 }
 
 .container {
-  background: #141420;
-  padding: 40px;
-  width: 520px;
-  border-radius: 18px;
-  box-shadow: 0 25px 45px rgba(0,0,0,0.45);
+  background: white;
+  padding: 30px;
+  border-radius: 24px;
+  width: 360px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
 }
 
-h1 {
-  text-align: center;
-  margin-top: 0;
+.hidden {
+  display: none;
+}
+
+.intro-img {
+  width: 100%;
+  border-radius: 16px;
+  margin-bottom: 20px;
 }
 
 .subtitle {
-  text-align: center;
-  font-size: 14px;
-  color: #bbb;
-  margin-bottom: 30px;
-}
-
-.question {
-  font-size: 18px;
+  color: #555;
   margin-bottom: 20px;
 }
 
 .option {
-  background: #22223a;
-  padding: 14px;
+  border: 1px solid #333;
   border-radius: 12px;
+  padding: 14px;
   margin-bottom: 12px;
   cursor: pointer;
   transition: 0.2s;
-  border: 1px solid #333;
 }
 
 .option:hover {
-  background: #2f2f55;
+  background: #f2f5ff;
 }
 
 .option.selected {
@@ -56,7 +58,6 @@ button {
   width: 100%;
   padding: 14px;
   background: #6ca0ff;
-  color: #000;
   border: none;
   border-radius: 12px;
   font-size: 16px;
@@ -64,55 +65,9 @@ button {
   margin-top: 20px;
 }
 
-/* Result */
+/* RESULT */
 .result-img {
-  width: 200px;
-  border-radius: 50%;
-  display: block;
-  margin: 0 auto 20px;
-}
-
-.result-title {
-  text-align: center;
-  font-size: 22px;
-  margin-bottom: 10px;
-}
-
-.result-text {
-  text-align: center;
-  font-size: 16px;
-  color: #ddd;
-}
-body {
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-  font-family: 'Segoe UI', sans-serif;
-}
-
-.card {
-  background: white;
-  padding: 30px;
-  border-radius: 24px;
-  text-align: center;
-  width: 340px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-}
-
-.teacher-img {
   width: 220px;
   border-radius: 50%;
   margin-bottom: 20px;
-}
-
-h1 {
-  margin: 10px 0;
-}
-
-p {
-  color: #555;
-  line-height: 1.6;
 }
