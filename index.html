@@ -2,42 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Homeroom Teacher Style</title>
+  <title>Homeroom Teacher Quiz</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
-  <h1>What Kind of Homeroom Teacher Are You?</h1>
-  <p class="subtitle">
-    An interactive reflection on different homeroom teacher roles.
-  </p>
-
-  <div id="quiz"></div>
-  <button id="nextBtn">Next</button>
-</div>
-
-<script src="script.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Our Homeroom Teacher</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-  <div class="card">
-    <img src="images/teacher.png" alt="Homeroom Teacher" class="teacher-img">
-
-    <h1>Our Homeroom Teacher</h1>
-    <p>
-      A responsible guide, calm, supportive, and always there  
-      to keep our class moving forward.
-    </p>
+  <!-- INTRO -->
+  <div class="container" id="intro">
+    <img src="images/intro-meme.PNG" class="intro-img">
+    <h1>What Kind of Homeroom Teacher Are You?</h1>
+    <p class="subtitle">A totally serious quiz. Trust us.</p>
+    <button onclick="startQuiz()">Start Quiz</button>
   </div>
 
+  <!-- QUIZ -->
+  <div class="container hidden" id="quiz-container">
+    <div id="quiz"></div>
+    <button id="nextBtn">Next</button>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
