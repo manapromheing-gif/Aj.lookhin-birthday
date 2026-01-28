@@ -1,134 +1,22 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>AJ Lookhin</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    body {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(12px);
-      border-radius: 24px;
-      padding: 32px;
-      width: 320px;
-      text-align: center;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-      animation: fadeUp 1s ease;
-    }
-
-    img {
-      width: 100%;
-      border-radius: 16px;
-      margin-bottom: 20px;
-      transition: transform 0.4s ease;
-    }
-
-    img:hover {
-      transform: scale(1.05);
-    }
-
-    h1 {
-      font-size: 1.6rem;
-      margin-bottom: 8px;
-    }
-
-    p {
-      font-size: 0.95rem;
-      opacity: 0.85;
-      margin-bottom: 20px;
-    }
-
-    .buttons {
-      display: flex;
-      gap: 10px;
-    }
-
-    button {
-      flex: 1;
-      padding: 10px;
-      border-radius: 12px;
-      border: none;
-      font-weight: 600;
-      cursor: pointer;
-      background: white;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background: #00e5ff;
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
+  <title>Homeroom Teacher Style</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <div class="card">
-    <img id="photo" src="images/teacher1.png" alt="teacher">
+<div class="container">
+  <h1>What Kind of Homeroom Teacher Are You?</h1>
+  <p class="subtitle">
+    An interactive reflection on different homeroom teacher roles.
+  </p>
 
-    <h1 id="title">Professional Teacher</h1>
-    <p id="desc">Calm, logical, and highly responsible.</p>
+  <div id="quiz"></div>
+  <button id="nextBtn">Next</button>
+</div>
 
-    <div class="buttons">
-      <button onclick="change(1)">1</button>
-      <button onclick="change(2)">2</button>
-      <button onclick="change(3)">3</button>
-    </div>
-  </div>
-
-  <script>
-    function change(n) {
-      const photo = document.getElementById("photo");
-      const title = document.getElementById("title");
-      const desc = document.getElementById("desc");
-
-      if (n === 1) {
-        photo.src = "images/teacher1.png";
-        title.innerText = "Professional Teacher";
-        desc.innerText = "Calm, logical, and highly responsible.";
-      }
-      if (n === 2) {
-        photo.src = "images/teacher2.png";
-        title.innerText = "Modern Educator";
-        desc.innerText = "Creative, adaptive, and student-focused.";
-      }
-      if (n === 3) {
-        photo.src = "images/teacher3.png";
-        title.innerText = "Strategic Mentor";
-        desc.innerText = "Analytical, visionary, and precise.";
-      }
-    }
-  </script>
-
+<script src="script.js"></script>
 </body>
 </html>
