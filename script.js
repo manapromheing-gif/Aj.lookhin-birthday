@@ -71,12 +71,12 @@ function showResult() {
   const results = {
     supportive: {
       title: "The Supportive Mentor",
-      img: "images/teacher1.PNG",
+      img: "images/teacher2.PNG",
       text: "Warm, caring, and always there."
     },
     responsible: {
       title: "The Responsible Guide",
-      img: "images/teacher2.PNG",
+      img: "images/teacher1.PNG",
       text: "Structure, rules, and respect."
     },
     academic: {
