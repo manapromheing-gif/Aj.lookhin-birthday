@@ -2,101 +2,93 @@ const quizData = [
   {
     q: "When students are noisy, you...",
     options: [
-      ["Talk calmly", "supportive"],
-      ["Set clear rules", "responsible"],
-      ["Turn it into a lesson", "academic"]
+      { text: "Talk calmly", type: "supportive" },
+      { text: "Set clear rules", type: "responsible" },
+      { text: "Turn it into a lesson", type: "academic" }
     ]
   },
   {
-    q: "Your homework style?",
+    q: "Your main goal as a teacher?",
     options: [
-      ["Optional but meaningful", "supportive"],
-      ["Always on time", "responsible"],
-      ["Challenging problems", "academic"]
-    ]
-  },
-  {
-    q: "Students see you as...",
-    options: [
-      ["A safe space", "supportive"],
-      ["A leader", "responsible"],
-      ["A mentor", "academic"]
+      { text: "Students feel safe", type: "supportive" },
+      { text: "Discipline & order", type: "responsible" },
+      { text: "Academic success", type: "academic" }
     ]
   }
 ];
 
 let index = 0;
 let selected = null;
-let score = {
-  supportive: 0,
-  responsible: 0,
-  academic: 0
-};
+let score = { supportive: 0, responsible: 0, academic: 0 };
 
-const quiz = document.getElementById("quiz");
-const btn = document.getElementById("nextBtn");
+const intro = document.getElementById("intro");
+const quizBox = document.getElementById("quizBox");
+const resultBox = document.getElementById("resultBox");
+const questionEl = document.getElementById("question");
+const optionsEl = document.getElementById("options");
+const nextBtn = document.getElementById("nextBtn");
 
 function startQuiz() {
-  document.getElementById("intro").classList.add("hidden");
-  document.getElementById("quiz-container").classList.remove("hidden");
+  intro.classList.add("hidden");
+  quizBox.classList.remove("hidden");
   loadQuestion();
 }
 
 function loadQuestion() {
   selected = null;
-  const q = quizData[index];
-  quiz.innerHTML = `
-    <h2>${q.q}</h2>
-    ${q.options.map((o,i)=>`
-      <div class="option" onclick="choose('${o[1]}', this)">
-        ${o[0]}
-      </div>
-    `).join("")}
-  `;
+  questionEl.textContent = quizData[index].q;
+  optionsEl.innerHTML = "";
+
+  quizData[index].options.forEach((opt, i) => {
+    const div = document.createElement("div");
+    div.className = "option";
+    div.textContent = opt.text;
+    div.onclick = () => choose(i, div);
+    optionsEl.appendChild(div);
+  });
 }
 
-function choose(type, el) {
-  document.querySelectorAll(".option").forEach(o=>o.classList.remove("selected"));
+function choose(i, el) {
+  document.querySelectorAll(".option").forEach(o => o.classList.remove("selected"));
   el.classList.add("selected");
-  selected = type;
+  selected = quizData[index].options[i].type;
 }
 
-btn.onclick = () => {
+nextBtn.onclick = () => {
   if (!selected) return;
   score[selected]++;
   index++;
-  if (index < quizData.length) {
-    loadQuestion();
-  } else {
-    showResult();
-  }
+  if (index < quizData.length) loadQuestion();
+  else showResult();
 };
 
 function showResult() {
+  quizBox.classList.add("hidden");
+  resultBox.classList.remove("hidden");
+
   const type = Object.keys(score).reduce((a,b)=>score[a]>score[b]?a:b);
 
   const results = {
     supportive: {
       title: "The Supportive Mentor",
-      text: "You create a safe, warm classroom where students feel understood.",
-      img: "images/teacher1.PNG"
+      img: "images/teacher1.PNG",
+      text: "Warm, caring, and always there."
     },
     responsible: {
       title: "The Responsible Guide",
-      text: "You bring structure, discipline, and trust to your class.",
-      img: "images/teacher2.PNG"
+      img: "images/teacher2.PNG",
+      text: "Structure, rules, and respect."
     },
     academic: {
-      title: "The Academic Inspirer",
-      text: "You push students to think deeper and aim higher.",
-      img: "images/teacher3.PNG"
+      title: "The Academic Encourager",
+      img: "images/teacher3.PNG",
+      text: "Knowledge is power."
     }
   };
 
-  quiz.innerHTML = `
+  resultBox.innerHTML = `
     <img src="${results[type].img}" class="result-img">
     <h2>${results[type].title}</h2>
     <p>${results[type].text}</p>
   `;
-  btn.style.display = "none";
 }
