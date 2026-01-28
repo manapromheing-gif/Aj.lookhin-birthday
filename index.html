@@ -9,17 +9,21 @@
 
   <!-- INTRO -->
   <div class="container" id="intro">
-    <img src="images/intro-meme.PNG" class="intro-img">
+    <img src="images/intro-meme.jpg" class="intro-img">
     <h1>What Kind of Homeroom Teacher Are You?</h1>
-    <p class="subtitle">A totally serious quiz. Trust us.</p>
+    <p>Answer honestly. No escape 😈</p>
     <button onclick="startQuiz()">Start Quiz</button>
   </div>
 
   <!-- QUIZ -->
-  <div class="container hidden" id="quiz-container">
-    <div id="quiz"></div>
+  <div class="container hidden" id="quizBox">
+    <h2 id="question"></h2>
+    <div id="options"></div>
     <button id="nextBtn">Next</button>
   </div>
+
+  <!-- RESULT -->
+  <div class="container hidden" id="resultBox"></div>
 
   <script src="script.js"></script>
 </body>
