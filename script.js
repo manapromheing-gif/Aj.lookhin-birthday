@@ -1,53 +1,65 @@
 const quizData = [
   {
-    q: "As a homeroom teacher, what matters most?",
+    q: "When students are noisy, you...",
     options: [
-      { text: "Discipline and responsibility", type: "responsible" },
-      { text: "Emotional support and trust", type: "supportive" },
-      { text: "Guiding students academically", type: "academic" }
+      ["Talk calmly", "supportive"],
+      ["Set clear rules", "responsible"],
+      ["Turn it into a lesson", "academic"]
     ]
   },
   {
-    q: "When students face problems, a homeroom teacher should…",
+    q: "Your homework style?",
     options: [
-      { text: "Set clear rules", type: "responsible" },
-      { text: "Listen and understand", type: "supportive" },
-      { text: "Help them solve the problem", type: "academic" }
+      ["Optional but meaningful", "supportive"],
+      ["Always on time", "responsible"],
+      ["Challenging problems", "academic"]
     ]
   },
   {
-    q: "A good homeroom class feels like…",
+    q: "Students see you as...",
     options: [
-      { text: "Organized and structured", type: "responsible" },
-      { text: "Safe and friendly", type: "supportive" },
-      { text: "Motivating and inspiring", type: "academic" }
+      ["A safe space", "supportive"],
+      ["A leader", "responsible"],
+      ["A mentor", "academic"]
     ]
   }
 ];
 
 let index = 0;
 let selected = null;
-let score = { supportive: 0, responsible: 0, academic: 0 };
+let score = {
+  supportive: 0,
+  responsible: 0,
+  academic: 0
+};
 
 const quiz = document.getElementById("quiz");
 const btn = document.getElementById("nextBtn");
+
+function startQuiz() {
+  document.getElementById("intro").classList.add("hidden");
+  document.getElementById("quiz-container").classList.remove("hidden");
+  loadQuestion();
+}
 
 function loadQuestion() {
   selected = null;
   const q = quizData[index];
   quiz.innerHTML = `
-    <div class="question">${q.q}</div>
-    ${q.options.map((o,i) =>
-      `<div class="option" onclick="choose(${i})">${o.text}</div>`
-    ).join("")}
+    <h2>${q.q}</h2>
+    ${q.options.map((o,i)=>`
+      <div class="option" onclick="choose('${o[1]}', this)">
+        ${o[0]}
+      </div>
+    `).join("")}
   `;
 }
 
-window.choose = function(i) {
-  document.querySelectorAll(".option").forEach(o => o.classList.remove("selected"));
-  document.querySelectorAll(".option")[i].classList.add("selected");
-  selected = quizData[index].options[i].type;
-};
+function choose(type, el) {
+  document.querySelectorAll(".option").forEach(o=>o.classList.remove("selected"));
+  el.classList.add("selected");
+  selected = type;
+}
 
 btn.onclick = () => {
   if (!selected) return;
@@ -61,32 +73,30 @@ btn.onclick = () => {
 };
 
 function showResult() {
-  const type = Object.keys(score).reduce((a,b) => score[a] > score[b] ? a : b);
+  const type = Object.keys(score).reduce((a,b)=>score[a]>score[b]?a:b);
 
   const results = {
     supportive: {
       title: "The Supportive Mentor",
-      text: "You create a safe and caring environment where students feel understood.",
-      img: "images/supportive.png"
+      text: "You create a safe, warm classroom where students feel understood.",
+      img: "images/teacher1.PNG"
     },
     responsible: {
       title: "The Responsible Guide",
-      text: "You emphasize discipline, responsibility, and clear expectations.",
-      img: "images/responsible.png"
+      text: "You bring structure, discipline, and trust to your class.",
+      img: "images/teacher2.PNG"
     },
     academic: {
-      title: "The Academic Encourager",
-      text: "You motivate students to grow, learn, and achieve their goals.",
-      img: "images/academic.png"
+      title: "The Academic Inspirer",
+      text: "You push students to think deeper and aim higher.",
+      img: "images/teacher3.PNG"
     }
   };
 
   quiz.innerHTML = `
     <img src="${results[type].img}" class="result-img">
-    <div class="result-title">${results[type].title}</div>
-    <div class="result-text">${results[type].text}</div>
+    <h2>${results[type].title}</h2>
+    <p>${results[type].text}</p>
   `;
   btn.style.display = "none";
 }
-
-loadQuestion();
